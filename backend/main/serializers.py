@@ -6,4 +6,4 @@ class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
         fields = ['id', 'full_name', 'email', 'password',
-                  'qualification', 'mobile_no', 'address']
+                  'qualification', 'mobile_no', 'skills']
