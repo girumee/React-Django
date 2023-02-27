@@ -14,24 +14,32 @@ class Teacher(models.Model):
     class Meta:
         verbose_name_plural = "1. Teachers"
 
+    def __str__(self):
+        return self.full_name
+
 # Course Category Model
 
 
 class CourseCategory(models.Model):
     title = models.CharField(max_length=150)
-    description = models.TextField()
+    description = models.TextField(null=True)
 
     class Meta:
         verbose_name_plural = "2. Course Categories"
+
+    def __str__(self):
+        return self.title
 
 # Course Model
 
 
 class Course(models.Model):
     category = models.ForeignKey(CourseCategory, on_delete=models.CASCADE)
-    title = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
-    description = models.TextField()
+    description = models.TextField(null=True)
+    featured_img = models.ImageField(upload_to='course_imgs/', null=True)
+    techs = models.TextField(null=True)
 
     class Meta:
         verbose_name_plural = "3. Courses"
@@ -45,8 +53,8 @@ class Student(models.Model):
     password = models.CharField(max_length=100)
     qualification = models.CharField(max_length=100)
     mobile_no = models.CharField(max_length=10)
-    address = models.TextField()
-    interested_categories = models.TextField()
+    address = models.TextField(null=True)
+    interested_categories = models.TextField(null=True)
 
     class Meta:
         verbose_name_plural = "4. Students"

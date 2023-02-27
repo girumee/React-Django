@@ -7,3 +7,6 @@ connection using axios
 2, install in the django or backend pip install django-cors-headers
 
 this will help to connect and send http request front end to back end
+
+for uploading image
+install pillow

@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import permissions
-from . serializers import TeacherSerializer
+from . serializers import TeacherSerializer, CategorySerializer, CourseSerializer
 from . import models
 
 
@@ -30,3 +30,13 @@ def teacher_login(request):
         return JsonResponse({'bool': True})
     else:
         return JsonResponse({'bool': False})
+
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = models.CourseCategory.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CourseList(generics.ListCreateAPIView):
+    queryset = models.Course.objects.all()
+    serializer_class = CourseSerializer
