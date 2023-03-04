@@ -44,6 +44,9 @@ class Course(models.Model):
     class Meta:
         verbose_name_plural = "3. Courses"
 
+    def __str__(self):
+        return self.title
+
 # Teacher Model
 
 
