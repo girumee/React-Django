@@ -27,7 +27,7 @@ def teacher_login(request):
     password = request.POST['password']
     teacherData = models.Teacher.objects.get(email=email, password=password)
     if teacherData:
-        return JsonResponse({'bool': True})
+        return JsonResponse({'bool': True, 'teacher_id': teacherData.id})
     else:
         return JsonResponse({'bool': False})
 
@@ -43,6 +43,15 @@ class CategoryList(generics.ListCreateAPIView):
 class CourseList(generics.ListCreateAPIView):
     queryset = models.Course.objects.all()
     serializer_class = CourseSerializer
+
+    # def list(self, request, *args, **kwargs):
+    #     queryset = self.get_queryset()
+    #     serializer = self.get_serializer(queryset, many=True)
+    #     data = {
+    #         'title': 'List of Category',
+    #         'category': CategorySerializer.data
+    #     }
+    #     return Response(data)
 
 
 class TeacherCourseList(generics.ListAPIView):
